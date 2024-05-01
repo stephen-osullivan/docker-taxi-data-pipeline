@@ -23,4 +23,16 @@ docker run -it \
   --name pg-database \
   postgres:13
 
-  
+# pgadmin on the same nework:
+docker run -it \
+  -e PGADMIN_DEFAULT_EMAIL="admin@admin.com" \
+  -e PGADMIN_DEFAULT_PASSWORD="root" \
+  -p 8080:80 \
+  --network=pg-network \
+  --name pgadmin-2 \
+  dpage/pgadmin4
+
+# view data in postgress admin server
+First, Run the test_sql_connection.ipynb to ingest 100 rows into the server
+Then view the data in the ui:
+!['data viewed in postgress server'](readme_images/postgress-sql-docker.png)
